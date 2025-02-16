@@ -4,7 +4,6 @@
  */
 
 /** Dependencies. */
-import Link from 'next/link'
 import Searcher from '@/app/components/common/searcher'
 import { Grid } from 'lucide-react'
 
@@ -15,24 +14,21 @@ import { Grid } from 'lucide-react'
  * @param {boolean} props.showSearch - Determines if the search bar should be visible.
  * @returns {JSX.Element} - The rendered component.
  */
-const Header: React.FC<{ showSearch: boolean }> = ({ showSearch = true }: { showSearch: boolean }): JSX.Element => {
+const Header: React.FC<{ showSearch: boolean }> = ({ showSearch = true }): JSX.Element => {
   return (
     <header
-      className="flex justify-between items-center p-4"
+      className="flex justify-between items-center px-4 py-2 w-full border-b border-gray-300"
       role="banner"
     >
-      <Link
-        href="/"
-        className="text-lg font-bold text-blue-500"
-        aria-label="Go to Home"
-      >
-        Search App
-      </Link>
+      {/* Left Side: Searcher (if enabled) */}
+      {showSearch && (
+        <div className="flex-grow">
+          <Searcher showInline={true} />
+        </div>
+      )}
 
-      <div className="flex items-center gap-4">
-        {/* Conditionally render Search */}
-        {showSearch && <Searcher />}
-
+      {/* Right Side: Apps Icon & Avatar */}
+      <div className="flex items-center gap-4 ml-auto">
         {/* Google Apps Icon */}
         <div
           className="p-2 rounded-full hover:bg-gray-100 cursor-pointer"
