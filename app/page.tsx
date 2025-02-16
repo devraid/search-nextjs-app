@@ -1,6 +1,6 @@
 /**
  * @author Miguel Chumillas.
- * @description Homepage.
+ * @description Home Page.
  */
 
 /** Dependencies. */
@@ -18,7 +18,7 @@ const HomePage = (): JSX.Element => {
       {/* Header */}
       <Header showSearch={false} />
       {/* Search */}
-      <Searcher />
+      <Searcher showInline={false} />
     </>
   )
 }
