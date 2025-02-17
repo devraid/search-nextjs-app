@@ -36,7 +36,7 @@ const animalFunctions: Record<string, () => string> = {
  * @param {string} context.params.animal - The requested animal type.
  * @returns {NextResponse} - JSON response with an array of animal data.
  */
-export const GET = async (req: Request, { params }: { params: { animal: string } }) => {
+export const GET = async (req: Request, { params }: { params: any }) => {
   const { animal } = params
 
   // Return an empty array if the requested animal type is not available.
