@@ -27,7 +27,7 @@ const Searcher = ({ showInline = false }: SearcherProps): JSX.Element => {
   const [query, setQuery] = useState<string>('')
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
-    if (event.key === 'Enter' && query.trim() !== '') {
+    if (event.key === 'Enter') {
       router.push(`/search?q=${encodeURIComponent(query)}`)
     }
   }
