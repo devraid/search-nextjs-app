@@ -66,6 +66,7 @@
     "@typescript-eslint/no-var-requires": "off",
     "no-unused-vars": "off",
     "no-tabs": "off",
+    "@typescript-eslint/no-require-imports": "off",
     "@typescript-eslint/no-this-alias": [
       "error",
       {
