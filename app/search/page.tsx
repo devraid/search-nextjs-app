@@ -20,7 +20,10 @@ import { useSearchParams } from 'next/navigation'
  */
 const fetchResults = async (query: string): Promise<AnimalData[]> => {
   try {
-    const res = await fetch(`http://localhost:3000/api/search/${query}`)
+    const res = await fetch(`http://localhost:3000/api/search/${query}`, {
+      cache: 'force-cache',
+      next: { revalidate: 86400 },
+    })
     if (!res.ok) return []
     return res.json()
   } catch {
