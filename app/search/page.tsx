@@ -6,15 +6,7 @@
 /** Dependencies. */
 import Header from '@/app/components/layout/header'
 import SearchResultItem from '@/app/components/search/item'
-import { notFound } from 'next/navigation'
-
-/** Interface for AnimalData. */
-interface AnimalData {
-  title: string
-  description: string
-  url: string
-  image: string
-}
+import { AnimalData } from '@/app/types'
 
 /**
  * Fetch search results from the API.
@@ -37,14 +29,15 @@ const fetchResults = async (query: string): Promise<AnimalData[]> => {
  * Displays search results based on the query parameter.
  *
  * @param {Object} props - Component properties.
- * @param {Object} props.searchParams - URL search parameters.
- * @param {string} [props.searchParams.q] - The search query parameter.
  * @returns {JSX.Element} - The rendered search results page.
  */
-const SearchResults = async ({ searchParams }: { searchParams: { q?: string } }): Promise<JSX.Element> => {
-  const query = searchParams.q?.trim().toLowerCase() || ''
-  if (!query) return notFound()
-
+const SearchResults = async (props: {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [q: string]: string }>
+}): Promise<JSX.Element> => {
+  const searchParams = await props.searchParams
+  const { q } = searchParams
+  const query = q?.trim().toLowerCase() || ''
   const results = await fetchResults(query)
 
   return (
@@ -59,7 +52,24 @@ const SearchResults = async ({ searchParams }: { searchParams: { q?: string } })
       >
         {/* Results List */}
         {results.length === 0 ? (
-          <p role="alert">No results found.</p>
+          <>
+            <p
+              role="alert"
+              className="text-xs mt-2"
+            >
+              {query && (
+                <>
+                  No results found for <span className="font-bold">&apos;{query}&apos;</span>.
+                  <br />
+                  <br />
+                </>
+              )}
+              Try looking for:{' '}
+              <span className="font-bold">
+                Insect, fish, horse, crocodilia, bear, cetacean, cow, lion, rabbit, cat, snake, dog, bird.
+              </span>
+            </p>
+          </>
         ) : (
           <ul
             className="space-y-6"

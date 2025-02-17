@@ -6,15 +6,7 @@
 /** Dependencies. */
 import { NextResponse } from 'next/server'
 import { faker } from '@faker-js/faker'
-
-/** Interface for AnimalData. */
-interface AnimalData {
-  id: number
-  title: string
-  description: string
-  url: string
-  image: string
-}
+import { AnimalData } from '@/app/types'
 
 /**
  * Mapping of available animal types to corresponding faker functions.
