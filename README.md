@@ -112,7 +112,7 @@ The app can be deployed on **Vercel** (or your preferred deployment platform), w
 ### **18\. Folder structure**
 
 app/  
-├── lib/api/ \# Server-side logic (data fetching, caching)  
+├── api/ \# Server-side logic (data fetching, caching)  
 ├── components/ \# Reusable React components  
 │ ├── common/ \# Common components  
 │ ├── layout/ \# Layout components

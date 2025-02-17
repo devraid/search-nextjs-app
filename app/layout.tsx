@@ -4,7 +4,7 @@
  */
 
 /** Dependencies. */
-import { ReactNode } from 'react'
+import { ReactNode, Suspense } from 'react'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import '@/app/globals.scss'
@@ -46,7 +46,7 @@ const RootLayout: React.FC<Readonly<{ children: ReactNode }>> = ({
     <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <div className="container mx-auto">
         {/* Children */}
-        {children}
+        <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
       </div>
     </body>
   </html>
