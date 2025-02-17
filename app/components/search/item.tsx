@@ -8,6 +8,7 @@ interface SearchResultItemProps {
   title: string
   description: string
   url: string
+  onClick: () => void
 }
 
 /**
@@ -17,7 +18,12 @@ interface SearchResultItemProps {
  * @param {SearchResultItemProps} props - Component properties.
  * @returns {JSX.Element} - The rendered list item.
  */
-const SearchResultItem: React.FC<SearchResultItemProps> = ({ title, description, url }): JSX.Element => {
+const SearchResultItem: React.FC<SearchResultItemProps> = ({
+  title,
+  description,
+  url,
+  onClick,
+}: SearchResultItemProps): JSX.Element => {
   return (
     <li
       className="pb-2"
@@ -33,11 +39,10 @@ const SearchResultItem: React.FC<SearchResultItemProps> = ({ title, description,
       {/* Title as Link */}
       <h2 className="text-base font-semibold mb-1">
         <a
-          href={url}
-          className="text-blue-600 hover:underline"
-          target="_blank"
+          className="text-blue-600 hover:underline cursor-pointer"
           rel="noopener noreferrer"
           aria-label={`Read more about ${title}`}
+          onClick={onClick}
         >
           {title}
         </a>
